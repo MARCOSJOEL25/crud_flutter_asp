@@ -13,14 +13,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  // int currentIndex = 2;
-
-  // final pages = [
-  //   const Page1(),
-  //   const Page2(),
-  //   const Page3(),
-  //   const Page4(),
-  // ];
 
   @override
   Widget build(BuildContext context) {

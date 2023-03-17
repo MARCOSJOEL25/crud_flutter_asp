@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../models/ProductModels.dart';
 import '../const/colors.dart';
+import '../providers/product_provider.dart';
 
-class ToDoItem extends StatelessWidget {
+class ToDoItem extends StatefulWidget {
   final Product product;
 
   const ToDoItem({
@@ -12,7 +14,14 @@ class ToDoItem extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<ToDoItem> createState() => _ToDoItemState();
+}
+
+class _ToDoItemState extends State<ToDoItem> {
+  @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<product_provider>(context);
+
     return Container(
       margin: EdgeInsets.only(bottom: 20),
       child: ListTile(
@@ -41,7 +50,7 @@ class ToDoItem extends StatelessWidget {
           ),
         ),
         title: Text(
-          product.productName!,
+          widget.product.productName!,
           style: const TextStyle(
             fontSize: 16,
             color: tdBlack,
@@ -61,7 +70,8 @@ class ToDoItem extends StatelessWidget {
             iconSize: 18,
             icon: Icon(Icons.delete),
             onPressed: () {
-              // print('Clicked on delete icon');
+              provider.deleteProduct(widget.product.productId!);
+              setState(() {});
             },
           ),
         ),
